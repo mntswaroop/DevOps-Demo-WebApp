@@ -9,9 +9,11 @@ pipeline {
 		  }	
            }
         stage('Build') { 
-            steps { 
-               sh 'mvn clean package'
-               echo 'This is a minimal pipeline to test building of a project' 
+            steps {  
+		    withMaven(maven: 'mvn') {
+                       sh 'mvn clean package'
+		    }  
+	       echo 'This is a minimal pipeline to test building of a project' 
              }
         }
     }

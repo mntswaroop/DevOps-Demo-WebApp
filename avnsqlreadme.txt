@@ -1,6 +1,6 @@
 SQL Commands
 ------------
-Testing Poll SCM testing
+Testing Poll SCM
 
 SELECT  *FROM avn;
 

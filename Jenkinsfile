@@ -1,6 +1,9 @@
 pipeline { 
-    agent any  
-
+    agent any 
+	tools{
+            maven 'maven 3'
+            jdk 'java 8'
+     }
     stages { 
 	    
        stage('Scm Checkout') {            
@@ -10,9 +13,7 @@ pipeline {
            }
         stage('Build') { 
             steps {  
-		    withMaven(maven: 'mvn') {
-                       sh 'mvn clean package'
-		    }  
+               sh 'mvn clean package 
 	       echo 'This is a minimal pipeline to test building of a project' 
              }
         }

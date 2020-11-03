@@ -24,5 +24,11 @@ pipeline {
 	       echo 'Deploying to QA environment' 
              }
         }
+        stage('Performing UI Tests') { 
+		steps {
+		  sh 'mvn test'
+	          echo "Performing UI tests"
+		}
+	   }
     }
 }

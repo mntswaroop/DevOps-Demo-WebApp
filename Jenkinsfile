@@ -27,6 +27,7 @@ pipeline {
         stage('Performing UI Tests') { 
 		steps {
 		  sh 'mvn test'
+		  publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: false, reportDir: '\\functionaltest\\target\\surefire-reports', reportFiles: 'index.html', reportName: 'UI-Test', reportTitles: ''])
 	          echo "Performing UI tests"
 		}
 	   }

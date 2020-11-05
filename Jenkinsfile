@@ -12,6 +12,24 @@ pipeline {
 	       echo 'Code checkout' 
 		  }	
            }
+	   stage('Code Quality Check via SonarQube') {
+            steps {
+                script {
+                    def scannerHome = tool 'sonarqube';
+                     withSonarQubeEnv("sonarqube") {
+                     sh "${tool("sonarqube")}/bin/sonar-scanner \
+                     -Dsonar.sources=. \
+                     -Dsonar.tests=. \
+                     -Dsonar.projectKey=. \
+                     -Dsonar.inclusions=**/test/java/servlet/createpage_junit.java \
+                     -Dsonar.test.exclusions=**/test/java/servlet/createpage_junit.java \
+                     -Dsonar.login=admin \
+                     -Dsonar.password=admin \
+                     -Dsonar.host.url=http://35.230.23.176:9000 \n"
+                    }
+                }
+            }
+        }
         stage('Build') { 
             steps {  
                sh 'mvn clean package'
